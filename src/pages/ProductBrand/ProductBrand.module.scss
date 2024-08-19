@@ -1,0 +1,37 @@
+.all-product {
+    // width: 80%;
+    display: flex;
+    justify-content: center;
+}
+.products {
+    display: flex;
+    width: 80%;
+    flex-wrap: wrap;
+}
+.img-product {
+    width: 280px;
+    height: 280px;
+}
+.product {
+    width: 280px;
+    padding: auto;
+}
+.product-name {
+    font-weight: bold;
+    text-align: center;
+}
+.product-price {
+    font-size: 15px;
+    text-align: center;
+    padding-top: 5px;
+}
+.product-id {
+    font-size: 13px;
+    text-align: center;
+    color: cadetblue;
+}
+.item-product {
+    width: 25%;
+    display: flex;
+    justify-content: center;
+}
