@@ -7,21 +7,27 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "../../../util/api.jsx";
 
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../../../redux/actions/userAction.jsx";
 const cx = classNames.bind(styles);
 
 const Header = () => {
+
+    const dispatch = useDispatch()
+    const existingUser = useSelector(state => state.user)
+    console.log('>>> check redux', existingUser);
 
     // INFOMATION
     const infomations = ['Email hỗ trợ: support@drake.vn', 'Hotline: 1800.1068', 'Miễn phí vận chuyển'];
     const [infomation, setInformation] = useState(0);
 
-    setTimeout(() => {
-        if(infomation<2) {
-            setInformation(infomation+1);
-        } else{
-            setInformation(0)
-        }
-    }, 3000)
+    // setTimeout(() => {
+    //     if(infomation<2) {
+    //         setInformation(infomation+1);
+    //     } else{
+    //         setInformation(0)
+    //     }
+    // }, 3000)
     const handleRight = () => {
         if(infomation<2) {
             setInformation(infomation+1);
@@ -55,13 +61,25 @@ const Header = () => {
                 <div className={cx('header-info')}>
                     <Link to='' className={cx('item-header-info')}>Hotline: 1800.1068</Link>
                     <Link to='' className={cx('item-header-info')}><FontAwesomeIcon icon={faHouse} /> Cửa hàng</Link>
-                    <Link to='/register' className={cx('item-header-info')}><FontAwesomeIcon icon={faLock} /> Đăng kí</Link>
-                    <Link to='' className={cx('item-header-info')}><FontAwesomeIcon icon={faUser} /> Đăng nhập</Link>
+                    {
+                        existingUser.isAuthentication ?
+                            <>  
+                                <div className={cx('item-header-info')}>
+                                    { existingUser.last_name } { existingUser.first_name }
+                                </div>
+                                <Link className={cx('item-header-info')} onClick={() =>  dispatch(logout())}>Đăng xuất</Link>
+                            </>
+                            :
+                            <>
+                                <Link to='/register' className={cx('item-header-info')}><FontAwesomeIcon icon={faLock} /> Đăng kí</Link>
+                                <Link to='/login' className={cx('item-header-info')}><FontAwesomeIcon icon={faUser} /> Đăng nhập</Link>
+                            </>
+                    }
                 </div>
             </div>
             <div className={cx('header-bottom')}>
                 <div className={cx('logo')}>
-                    <img src={Logo} />
+                    <Link><img src={Logo} /></Link>
                 </div>
                 <div className={cx('cart')}>
                     <div className={cx('item-cart')}>

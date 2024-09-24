@@ -33,14 +33,45 @@
     display: flex;
     justify-content: end;
     align-items: center;
+    padding-bottom: 20px;
 }
 .input {
     width: 80%;
     padding: 6px;
     display: flex;
     align-items: center;
+    border: 1px solid rgb(197, 184, 184);
 }
 .info-item-form-input {
     padding-right: 25px;
     font-weight: bold;
+    font-size: 14px;
+}
+.button-register {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+.item-button-register {
+    padding: 10px;
+}
+.cf {
+    display: flex;
+}
+.item-cf {
+    padding-right: 5px;
+}
+.button {
+    width: 100px;
+    height: 40px;
+    background-color: rgb(248,192,82);
+    border: 0px;
+}
+.button:hover {
+    background-color: rgb(197, 184, 184);
+}
+.error {
+    margin-left: 260px;
+    font-size: 13px;
+    color: rgb(223, 44, 44);
 }
